@@ -33,6 +33,25 @@ python ./manage.py runserver
 
 ---
 
+## 测试
+
+单元测试
+
+```bash
+python ./manage.py test ./apps/
+```
+
+覆盖测试
+
+```bash
+coverage run ./manage.py test ./apps/
+
+# 覆盖测试报告
+coverage report
+```
+
+---
+
 ## TODO
 
 - [ ] 添加文章标签

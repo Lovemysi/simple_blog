@@ -25,6 +25,7 @@ def add_post(request: HttpRequest):
     form = PostForm()
 
     if request.method == "POST":
+        # TODO 注意! 无法添加封面
         form = PostForm(request.POST, request.FILES)
 
         if form.is_valid():
@@ -93,7 +94,7 @@ def delete_post(request: HttpRequest, post_id: str):
         return redirect("home")
 
     if post.author.id != blog_user.id:
-        messages.error(request, "无权修改文章!")
+        messages.error(request, "无权删除文章!")
         return redirect("home")
 
     post.delete()

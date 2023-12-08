@@ -16,3 +16,4 @@ static/images/covers/*
 db.sqlite3
 pnpm-lock.yaml
 package-lock.json
+.coverage

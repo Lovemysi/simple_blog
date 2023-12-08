@@ -35,9 +35,8 @@ def register_user(request: HttpRequest):
             return redirect("home")
         messages.error(request, "Register Failed!")
 
-    if request.user.is_authenticated:  # type: ignore
+    if request.user.is_authenticated:
         blog_user = BlogUser.objects.get(user=request.user)
-
         return redirect("home")
 
     return render(request, "users/register.html", {"page_title": "注册", "form": form})
