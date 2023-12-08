@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="bg-gray-100 w-10/12 m-auto my-8 p-4 rounded-md shadow-md">
+    <img
+        class="w-full rounded-md h-80 object-cover"
+        src="{{ post.cover.url }}"
+        alt="post cover"
+    />
+
+    <h1 class="text-gray-600 font-bold text-center text-3xl my-10">文章标题</h1>
+
+    <div class="flex justify-between items-center bg-blue-100 my-4 mx-20 rounded-md shadow-md p-4">
+        <div>
+            <p class="text-gray-600">作者: {{ post.author }}</p>
+            <p class="text-gray-600">最后一次更新: {{ post.last_modified }}</p>
+            <p class="text-gray-600">创建时间: {{ post.created }}</p>
+        </div>
+
+        <div>
+            {% if request.user.is_authenticated %}
+                {% if blog_user.id == post.author.id %}
+              <a href="{% url 'update_post' post.id %}" class="text-blue-400 hover:text-blue-300">修改文章</a>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+
+    {% for paragraph  in body_paragraphs %}
+    <p class="text-gray-500 my-4 mx-20 indent-4">{{ paragraph }}</p>
+    {% endfor %}
+
+    
+    {% if request.user.is_authenticated %}
+        <form class="bg-green-100 my-10 mx-20 p-4 rounded-md shadow-md mt-10" method="post" action="{% url 'add_comment'  post.id %}">
+            {% csrf_token %}
+            <label for="id_body" class="text-gray-500 block font-bold">你的评论</label>
+            <textarea
+                class="bg-white rounded-md p-2 my-4 outline-none text-gray-600 border-blue-100 border-2 w-full"
+                name="body"
+                rows="2"
+                id="id_body"
+            ></textarea>
+            <div class="flex justify-end">
+            <input
+                type="submit"
+                class="bg-blue-400 rounded-md p-2 text-gray-50 w-1/4 shadow-md transition-transform hover:-translate-y-1 active:translate-y-0 cursor-pointer"
+                value="评论"
+            />
+            </div>
+        </form>
+    {% endif %}
+    
+
+    <!-- TODO 待定 | 等待循环 -->
+    {% if comments %}
+        {% for comment in comments %}
+            <div class="bg-blue-100 my-8 mx-20 p-4 rounded-md shadow-md">
+                <div class="flex justify-between items-center mx-8">
+                    <div>
+                        <img
+                        class="h-[50px] w-[50px] rounded-full inline-block mr-4 object-cover"
+                        src="{{ comment.author.profile_img.url }}"
+                        alt="User Profile"
+                        />
+                        <span class="text-gray-500 text-xl">{{ comment.author.username }}</span>
+                    </div>
+            
+                    <div class="text-gray-400">评论时间: {{ comment.created }}</div>
+                </div>
+        
+                <p class="text-gray-500 mt-4 mx-8">
+                    {{ comment.body }}
+                </p>
+            </div>
+        {% endfor %}
+    {% endif %}
+    
+
+    
+    </section>
+
+{% endblock content %}

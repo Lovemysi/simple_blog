@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<form class="flex flex-col items-center justify-start p-4 mt-14 mb-8 m-auto bg-gray-50 w-1/2 rounded-md shadow-md" action="" method="post">
+    {% csrf_token %}
+    <h3 class="my-2 text-gray-600 text-2xl font-bold">登录</h3>
+
+    <div class="w-1/2">
+        <input type="text" class="bg-gray-200 rounded-md p-2 my-4 outline-none text-gray-600 w-full"
+            placeholder="用户名" name="username"/>
+    </div>
+
+    <div class="w-1/2">
+        <input type="password" class="bg-gray-200 rounded-md p-2 my-4 outline-none text-gray-600 w-full"
+            placeholder="密码" name="password"/>
+    </div>
+    
+    <div class="mt-4 mb-8 w-1/2">
+        <p class="text-gray-600">没有账号?
+            <a href="{% url 'register' %}" class="text-blue-400 font-bold transition-colors hover:text-blue-300">
+                注册
+            </a>
+        </p>
+    </div>
+    
+    <input type="submit"
+        class="bg-blue-400 rounded-md p-2 outline-none text-gray-50 w-1/4 shadow-md transition-transform cursor-pointer hover:-translate-y-1 active:translate-y-0"
+        value="登录"
+    />
+</form>
+
+{% endblock content %}

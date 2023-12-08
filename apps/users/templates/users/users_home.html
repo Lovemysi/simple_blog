@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <form
+    class="flex flex-col items-center justify-start p-4 my-8 m-auto bg-gray-50 w-1/2 rounded-md shadow-md"
+    action=""
+    method="post"
+    enctype="multipart/form-data"
+    >
+        <img
+        class="h-[100px] w-[100px] rounded-full inline-block mx-4 my-4 object-cover"
+        src="{{ blog_user.profile_img.url }}"
+        alt="User Profile"
+        />
+
+        <h3 class="my-2 text-gray-600 text-2xl font-bold">{{ blog_user.username }}</h3>
+
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="w-1/2">
+                {{ field.label }}
+                {{ field }}
+                {% for error in field.errors %}
+                    <p class="text-red-400">{{error}}</p>
+                {% endfor %}
+            </div>
+        {% endfor %}
+        
+        {% if request.user.is_authenticated and request.user.is_superuser %}
+            <div class="mt-4 mb-8 w-1/2">
+                <p class="text-gray-600">你是网站的超级管理员: 
+                    <a href="/admin" class="text-blue-400 font-bold transition-colors hover:text-blue-300">
+                        前往管理
+                    </a>
+                </p>
+            </div>
+        {% endif %}
+        
+        <div class="mt-4 mb-8 w-1/2">
+            <label
+            class="p-2 bg-orange-400 text-white rounded-md hover:bg-orange-300 transition-colors block text-center"
+            for="id_profile_img"
+            >用户头像: 选择文件</label>
+            <input
+                class="hidden"
+                type="file"
+                name="profile_img"
+                accept="image/*"
+                id="id_profile_img"
+            />
+            </div>
+
+            <input
+            type="submit"
+            class="bg-blue-400 rounded-md p-2 outline-none text-gray-50 w-1/4 shadow-md transition-transform hover:-translate-y-1 active:translate-y-0 cursor-pointer"
+            value="更新"
+            />
+    </form>
+{% endblock content %}
+

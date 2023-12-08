@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div>
+    <form
+        class="flex flex-col items-center justify-start p-4 mt-14 mb-8 m-auto bg-gray-50 w-1/2 rounded-md shadow-md"
+        action=""
+        method="post"
+        >
+        {% csrf_token %}
+        <h3 class="my-2 text-gray-600 text-2xl font-bold">注 册</h3>
+        {% for field in form %}
+            <div class="w-1/2">
+                {{ field }}
+                {% for error in field.errors %}
+                    <p class="text-red-400">{{error}}</p>
+                {% endfor %}
+            </div>
+        {% endfor %}
+
+        <div class="mt-4 mb-8 w-1/2">
+            <p class="text-gray-600">已有账号?
+                <a href="{% url 'login' %}" class="text-blue-400 font-bold transition-colors hover:text-blue-300">
+                    登录
+                </a>
+            </p>
+        </div>
+        
+        <input
+            type="submit"
+            class="bg-blue-400 rounded-md p-2 outline-none text-gray-50 w-1/4 shadow-md transition-transform hover:-translate-y-1 active:translate-y-0"
+            value="注册"
+        />
+    </form>
+</div>
+
+{% endblock content %}
+
+
+
+

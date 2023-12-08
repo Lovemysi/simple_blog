@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <form
+        class="flex flex-col items-center justify-start p-4 my-8 m-auto bg-gray-50 w-1/2 rounded-md shadow-md"
+        action=""
+        method="post"
+        enctype="multipart/form-data"
+        >
+
+            <h3 class="my-2 text-gray-600 text-2xl font-bold">新建文章</h3>
+
+            {% csrf_token %}
+            {% for field in form %}
+                
+                {% if field.label == 'Body' %}
+                    
+                    <div>
+                        <label for="id_body" class="text-gray-600 block">文章内容</label>
+                        {{ field }}
+                        {% for error in field.errors %}
+                            <p class="text-red-400">{{error}}</p>
+                        {% endfor %}
+                    </div>
+                    
+                {% else %}
+                    <div class="w-1/2">
+                        {{ field }}
+                        {% for error in field.errors %}
+                            <p class="text-red-400">{{error}}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                
+            {% endfor %}
+            
+            <div class="mt-4 mb-8 w-1/2">
+                <label
+                    class="p-2 bg-orange-400 text-white rounded-md hover:bg-orange-300 transition-colors block text-center"
+                    for="cover"
+                    >文章封面: 选择文件</label
+                >
+                <input class="hidden" type="file" name="cover" accept="image/*" id="cover" />
+            </div>
+        
+            <input
+                type="submit"
+                class="bg-blue-400 rounded-md p-2 outline-none text-gray-50 w-1/4 shadow-md transition-transform hover:-translate-y-1 active:translate-y-0 cursor-pointer"
+                value="创建文章"
+            />
+    </form>
+
+{% endblock content %}

@@ -1,0 +1,18 @@
+__pycache__/
+node_modules/
+dist/
+venv/
+
+venv_simpleBlog/
+migrations/
+.vscode/
+
+# static file 
+static/images/profiles/*
+static/images/covers/*
+!static/images/profiles/user-default.png
+!static/images/covers/cover-default.png
+
+db.sqlite3
+pnpm-lock.yaml
+package-lock.json

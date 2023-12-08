@@ -1,0 +1,4 @@
+apps/**/*.html
+
+templates/**/*.html
+static/**/*.css

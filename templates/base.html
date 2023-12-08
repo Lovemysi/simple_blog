@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="icon" sizes="192x192" href="{% static 'images/django_logo.png' %}">
+    <title>Simple Blog - {{ page_title }}</title>
+  </head>
+  <body>
+    {% include "navbar.html" %}
+
+    {% if messages %}
+      <div class="bg-yellow-100 m-auto w-1/2 my-8 p-4 rounded-md">
+        {% for message in messages %}
+          <p class="font-bold text-gray-600">{{ message }}</p>
+        {% endfor %}
+      </div>
+    {% endif %}
+    
+    
+    
+    
+    {% block content %}{% endblock content %}
+
+  </body>
+</html>
