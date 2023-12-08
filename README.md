@@ -15,7 +15,7 @@ pip install -r requirements.txt
 迁移数据库
 
 ```bash
-python ./manage.py makemigrations
+python ./manage.py makemigrations users posts
 python ./manage.py migrate
 ```
 
