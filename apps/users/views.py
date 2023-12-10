@@ -14,12 +14,12 @@ from .models import BlogUser
 
 def valid_data(post: QueryDict, keys: list) -> bool:
     for key in post:
+        if key == "" and key != "csrfmiddlewaretoken":
+            return False
+
         if key not in keys and key != "csrfmiddlewaretoken":
             return False
     return True
-
-
-# TODO 如果已登录重定向至主页
 
 
 def register_user(request: HttpRequest):

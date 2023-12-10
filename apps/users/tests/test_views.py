@@ -5,7 +5,6 @@ from django.contrib.auth.models import User
 from users.models import BlogUser
 
 
-# TODO 检测重定向使用 self.assertRedirects()
 class BlogUserTestCase(TestCase):
     @classmethod
     def setUpTestData(cls) -> None:
@@ -38,7 +37,7 @@ class BlogUserTestCase(TestCase):
 
     def test_login_bloguser(self):
         res = self.client.post(reverse("login"), {"username": "Test", "password": "test123456"})
-        self.assertEqual(res.status_code, 302)
+        self.assertRedirects(res, reverse("home"))
 
         res = self.client.get(reverse("home"))
         self.assertEqual(res.status_code, 200)

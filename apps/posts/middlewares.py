@@ -5,6 +5,7 @@ from django.http.request import HttpRequest
 from users.models import BlogUser
 
 
+# 迁移至 users
 class CheckUserExists(MiddlewareMixin):
     def process_request(self, request: HttpRequest):
         if request.user.is_authenticated:

@@ -6,6 +6,7 @@ venv/
 venv_simpleBlog/
 migrations/
 .vscode/
+reports/
 
 # static file 
 static/images/profiles/*

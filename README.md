@@ -44,11 +44,22 @@ python ./manage.py test ./apps/
 覆盖测试
 
 ```bash
-coverage run ./manage.py test ./apps/
+coverage run -m pytest
 
 # 覆盖测试报告
 coverage report
 ```
+
+Allure Report
+
+```bash
+pytest --alluredir=./reports
+allure serve ./reports
+```
+
+pytest: https://docs.pytest.org/en/7.4.x/
+pytest-django: https://pypi.org/project/pytest-django/
+Allure Report: https://allurereport.org/
 
 ---
 

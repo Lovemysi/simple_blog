@@ -25,13 +25,18 @@ def add_post(request: HttpRequest):
     form = PostForm()
 
     if request.method == "POST":
-        # TODO 注意! 无法添加封面
-        form = PostForm(request.POST, request.FILES)
+        form = PostForm(request.POST)
+        cover: UploadedFile | None = request.FILES.get("cover")
 
-        if form.is_valid():
+        if form.is_valid() and cover is None:
             post: Post = form.save(commit=False)
             post.author = blog_user
             post.save()
+            return redirect("home")
+        elif cover is not None:
+            post: Post = form.save(commit=False)
+            post.author = blog_user
+            post.cover.save(cover.name, cover)
             return redirect("home")
 
     return render(request, "posts/add_post.html", {"page_title": "添加文章", "blog_user": blog_user, "form": form})
