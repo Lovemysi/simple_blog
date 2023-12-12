@@ -178,42 +178,46 @@
     <main>
       <hr />
 
-      <!-- 文章 -->
+      <!-- TODO 还需优化 -->
       <div
-        class="bg-gray-100 w-7/12 h-60 m-auto my-8 rounded-md shadow-md overflow-hidden relative"
+        class="bg-gray-100 w-7/12 h-60 m-auto my-8 rounded-md shadow-md overflow-hidden flex justify-between"
       >
-        <a href="#" class="inline-block"
-          ><img class="w-60 h-60" src="./src/images/default-cover.png" alt="Cover"
-        /></a>
-
-        <div class="flex justify-between items-center mb-4 absolute top-5 left-72 w-[650px]">
-          <a href="#">
-            <h4 class="text-gray-500 font-bold text-xl truncate w-[400px]">
-              很长很长的标题 | Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos
-              repellat quae distinctio nam velit eaque recusandae. Ipsa incidunt delectus animi
-              quasi sed perferendis reiciendis facilis voluptates iste, placeat est minus.
-            </h4>
+        <!-- 图片 -->
+        <div class="basis-2/6">
+          <a href="#" class="inline-block">
+            <img class="object-cover" src="./src/images/default-cover.png" alt="Cover" />
           </a>
-
-          <a href="#" class="text-blue-400 hover:text-blue-300">修改文章</a>
         </div>
 
-        <p
-          class="text-gray-400 text-clip my-6 inline-block absolute top-10 left-72 w-[650px] h-28 overflow-hidden select-none"
-        >
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga saepe tempore quis ipsam
-          eius tempora, repellat rerum fugiat debitis aliquid aliquam natus harum illo dicta
-          voluptates quae distinctio molestiae dolor. Lorem ipsum dolor sit amet consectetur,
-          adipisicing elit. Iure possimus vero, libero hic, omnis porro fuga corrupti doloribus
-          eligendi ea aspernatur nihil labore ab ipsa at a et, itaque accusamus. Lorem ipsum dolor
-          sit amet consectetur adipisicing elit. Molestiae labore est sapiente doloribus voluptas
-          quasi beatae, alias necessitatibus provident architecto sit dolorem optio perspiciatis,
-          illum consequatur modi. Iusto, laboriosam id.
-        </p>
+        <!-- 内容概览 -->
+        <div class="basis-4/6">
+          <!-- 标题栏 -->
+          <div class="flex justify-between p-4">
+            <a href="#" class="basis-3/4"
+              ><h4 class="text-gray-500 font-bold text-xl lg:w-[300px] md:w-[150px] truncate">
+                很长很长的标题 | Lorem ipsum dolor, sit amet consectetur adipisicing elit. Et
+                exercitationem illo quam, dolore excepturi eaque nisi. Ullam, consequatur odit? Qui
+                voluptatem odit officia impedit soluta tempore ratione debitis explicabo obcaecati.
+              </h4>
+            </a>
+            <a href="#" class="text-blue-400 hover:text-blue-300">修改文章</a>
+          </div>
 
-        <div class="flex justify-between absolute bottom-6 left-72 w-[650px]">
-          <p class="text-gray-600">作者: Voilone</p>
-          <p class="text-gray-400">时间: 2023-1-1</p>
+          <!-- 文章概要 -->
+          <p class="text-gray-400 text-clip inline-block overflow-hidden select-none p-4 h-28">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae cumque soluta minima,
+            molestiae tenetur est adipisci sint amet excepturi in ex nostrum at impedit? Commodi
+            animi est id enim beatae. Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+            Veniam, pariatur! Voluptates atque, sit ratione aliquid laborum, vero, alias voluptate
+            esse repudiandae mollitia reprehenderit dolore explicabo deserunt facere doloribus vitae
+            facilis?
+          </p>
+
+          <!-- 文章信息2 -->
+          <div class="flex justify-between p-4">
+            <p class="text-gray-600">作者: Voilone</p>
+            <p class="text-gray-400">时间: 2023-1-1</p>
+          </div>
         </div>
       </div>
     </main>
