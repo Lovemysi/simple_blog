@@ -2,6 +2,7 @@ __pycache__/
 node_modules/
 dist/
 venv/
+.pytest_cache/
 
 venv_simpleBlog/
 migrations/
