@@ -29,7 +29,8 @@ def register_user(request: HttpRequest):
         form = BlogUserCreationForm(request.POST)
         if form.is_valid():
             user: User = form.save()
-            blog_user = BlogUser(user=user, username=user.username, email=user.email)
+            blog_user = BlogUser(
+                user=user, username=user.username, email=user.email)
             blog_user.save()
             login(request, user)
             return redirect("home")

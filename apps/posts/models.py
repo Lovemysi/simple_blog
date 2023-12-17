@@ -10,7 +10,8 @@ class Post(models.Model):
 
     id = models.IntegerField(primary_key=True)
     author = models.ForeignKey(to=BlogUser, on_delete=models.CASCADE)
-    cover = models.ImageField(upload_to="covers/", default="covers/cover-default.png", null=True, blank=True)
+    cover = models.ImageField(
+        upload_to="covers/", default="covers/cover-default.png", null=True, blank=True)
     title = models.CharField(max_length=100)
     body = models.TextField(null=True, blank=True)
     last_modified = models.DateTimeField(auto_now=True)

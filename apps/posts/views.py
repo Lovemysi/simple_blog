@@ -12,7 +12,7 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 def home(request: HttpRequest):
     post_paginator = Post.objects.all()
-    paginator = Paginator(post_paginator, 3)
+    paginator = Paginator(post_paginator, 1)
     page_number = request.GET.get('page', 1)
 
     try:

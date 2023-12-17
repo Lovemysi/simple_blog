@@ -1,22 +1,37 @@
-<div class="bg-gray-100   m-auto my-8 rounded-md shadow-md overflow-hidden relative" style="width: 270px;">
-        <div class="flex flex-row " >
+<div class="bg-gray-100 w-7/12 m-auto my-8 rounded-md shadow-md overflow-hidden flex justify-between " style=" height: 40px;">
+        <div class="flex ">
           {% if page.has_previous %}
-            <div class="shadow-md overflow-hidden " style="width: 150px; height: 30px;">
-                <a href="?page={{ page.previous_page_number }}" style="padding-top: 3px;padding-left: 20px;">&#9668;</a>
+            <div class="shadow-md overflow-hidden hover:text-blue-300 " style="width: 50px;">
+              <div style="text-align: center;padding-top: 8px;"><a href="?page={{ page.previous_page_number }}">&#9668;</a></div>
+            </div>
+            {% else %}
+            <div class="shadow-md overflow-hidden hover:text-blue-300" style="width: 50px;">
+              <div style="text-align: center;padding-top: 8px;"><a href="">&#9668;</a></div>
             </div>
           {% endif %}
   
           {% for index in page.paginator.page_range %}
-            <div class="shadow-md overflow-hidden " style="width: 150px;height: 30px;text-align: center;padding-top: 3px;">      
-                <a href="?page={{ index }}" style="padding-top: 3px;padding-left: 20px;">{{ index}}</a>
+            <div class="shadow-md overflow-hidden hover:text-blue-300" style="width: 50px;text-align: center;padding-top: 3px;">      
+              
+              {% if page.number == index %}
+              <div style="text-align: center;padding-top: 8px;color: rgb(231, 167, 18);"> <a href="?page={{ index }}">{{ page.number}}</a></div>
+              {% else %}
+              <div style="text-align: center;padding-top: 8px;"> <a href="?page={{ index }}">{{ index}}</a></div>
+              {% endif %}
+
             </div>
           {% endfor %}
   
           {% if page.has_next %}
-            <div class="shadow-md overflow-hidden m-auto" style="width: 150px;height: 30px;">
-                <a href="?page={{ page.next_page_number }}" style="padding-top: 3px;padding-left: 20px;">&#9658;</a>
+            <div class="shadow-md overflow-hidden hover:text-blue-300" style="width: 50px;">
+                <div style="text-align: center;padding-top: 8px;"><a href="?page={{ page.next_page_number }}">&#9658;</a></div>
+            </div>
+            {% else %}
+            <div class="shadow-md overflow-hidden hover:text-blue-300" style="width: 50px;">
+              <div style="text-align: center;padding-top: 8px;"><a href="">&#9658;</a></div>
             </div>
           {% endif %}
             
         </div>
+
 </div>
