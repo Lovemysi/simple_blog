@@ -1,0 +1,22 @@
+<div class="bg-gray-100   m-auto my-8 rounded-md shadow-md overflow-hidden relative" style="width: 270px;">
+        <div class="flex flex-row " >
+          {% if page.has_previous %}
+            <div class="shadow-md overflow-hidden " style="width: 150px; height: 30px;">
+                <a href="?page={{ page.previous_page_number }}" style="padding-top: 3px;padding-left: 20px;">&#9668;</a>
+            </div>
+          {% endif %}
+  
+          {% for index in page.paginator.page_range %}
+            <div class="shadow-md overflow-hidden " style="width: 150px;height: 30px;text-align: center;padding-top: 3px;">      
+                <a href="?page={{ index }}" style="padding-top: 3px;padding-left: 20px;">{{ index}}</a>
+            </div>
+          {% endfor %}
+  
+          {% if page.has_next %}
+            <div class="shadow-md overflow-hidden m-auto" style="width: 150px;height: 30px;">
+                <a href="?page={{ page.next_page_number }}" style="padding-top: 3px;padding-left: 20px;">&#9658;</a>
+            </div>
+          {% endif %}
+            
+        </div>
+</div>

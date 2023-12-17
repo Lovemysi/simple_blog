@@ -7,12 +7,24 @@ from django.core.files.uploadedfile import UploadedFile
 from users.models import BlogUser
 from .forms import PostForm
 from .models import Post, Comment
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 
 def home(request: HttpRequest):
-    post_list = Post.objects.all()
+    post_paginator = Post.objects.all()
+    paginator = Paginator(post_paginator, 3)
+    page_number = request.GET.get('page', 1)
 
-    if request.user.is_authenticated:  # type: ignore
+    try:
+        post_list = paginator.page(page_number)
+
+    except PageNotAnInteger:
+        post_list = paginator.page(1)
+
+    except EmptyPage:
+        post_list = paginator.page(paginator.num_pages)
+
+    if request.user.is_authenticated:
         blog_user = BlogUser.objects.get(user=request.user)
         return render(request, "posts/posts_index.html", {"page_title": "主页", "blog_user": blog_user, "post_list": post_list})
 
@@ -57,7 +69,8 @@ def show_post(request: HttpRequest, post_id: str):
 
     body_paragraphs = str(post.body).split("\n")
     return render(
-        request, "posts/post.html", {"page_title": post.title, "post": post, "comments": comments, "body_paragraphs": body_paragraphs, "blog_user": blog_user}
+        request, "posts/post.html", {"page_title": post.title, "post": post,
+                                     "comments": comments, "body_paragraphs": body_paragraphs, "blog_user": blog_user}
     )
 
 

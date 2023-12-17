@@ -38,11 +38,16 @@
           <div class="flex justify-between p-4">
             <p class="text-gray-600">作者: {{ post.author }}</p>
             <p class="text-gray-400">时间: {{ post.created }}</p>
+            
           </div>
         </div>
       </div>     
 
+        
     {% endfor %}
+
+    {% include "pagination.html" with page=post_list  %} 
+  
   </main>
 
 {% endblock content %}
